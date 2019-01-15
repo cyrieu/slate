@@ -51,7 +51,7 @@ An additional file called LangConfig.js will be created, containing the client u
 
 ```javascript
 //LangClient.js
-var LangClient = require("lang")(
+var LangClient = require("langapi")(
   process.env.LANG_KEY,
   require("./.lang/translations.json"),
   require("./.lang/langconfig.json")
@@ -67,7 +67,7 @@ export function tr(phrase) {
 
 ```typescript
 // LangClient.ts
-import LangTranslateClient from "lang";
+import LangTranslateClient from "langapi";
 
 const LangClient = new LangTranslateClient(
   process.env.LANG_KEY,
@@ -88,14 +88,14 @@ Adding support for variables inside the string is coming out in the next release
 
 ```javascript
 // *.js, *.jsx
-var tr = require("langapi").tr;
+var tr = require("./LangClient").tr;
 
 var translatedString = tr("Original string");
 ```
 
 ```typescript
 // *.ts, *.tsx
-import { tr } from "langapi";
+import { tr } from "./LangClient";
 
 const translatedString = tr("Original string");
 ```
