@@ -316,11 +316,11 @@ You can generate a typescript Lang Client by adding the --ts flag.</p>
 
 <p>Adding support for variables inside the string is coming out in the next release - only plaintext strings are currently supported.</p>
 <pre class="highlight javascript tab-javascript"><code><span class="c1">// *.js, *.jsx</span>
-<span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"langapi"</span><span class="p">).</span><span class="nx">tr</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"./LangClient"</span><span class="p">).</span><span class="nx">tr</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">translatedString</span> <span class="o">=</span> <span class="nx">tr</span><span class="p">(</span><span class="s2">"Original string"</span><span class="p">);</span>
 </code></pre><pre class="highlight typescript tab-typescript"><code><span class="c1">// *.ts, *.tsx</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">tr</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"langapi"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">tr</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"./LangClient"</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">translatedString</span> <span class="o">=</span> <span class="nx">tr</span><span class="p">(</span><span class="s2">"Original string"</span><span class="p">);</span>
 </code></pre><h1 id='request-translations'>Request Translations</h1>
