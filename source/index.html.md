@@ -46,7 +46,7 @@ An additional file called LangConfig.js will be created, containing the client u
 ```shell--all
 #!/user/bin/bash
 
-> langapi init
+> langapi init --flags
 ```
 
 > A --src flag can be provided to specify the source directory. If no argument is provided, it defaults to "./src".
