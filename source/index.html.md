@@ -136,62 +136,6 @@ Since we're using machine translations in this demo, the translations are done i
 
 Congratulations! You've just translated your first string using LangAPI. We hope it was easy enough, and we'd love to hear your feedback. Shoot one of us an email at eric@langapi.co or peter@langapi.co and let us know what you think!
 
-# LangApi Clients
-
-> Language codes can be found on the Language Codes tab of this documentation.
-
-```javascript
-//LangClient.js
-var LangClient = require("langapi-client")(
-  process.env.LANG_KEY,
-  require("./.lang/translations.json"),
-  require("./.lang/langconfig.json")
-);
-
-export function tr(phrase) {
-  return LangClient.tr(phrase);
-}
-```
-
-> You can generate a typescript Lang Client by adding the --ts flag.
-
-```typescript
-// LangClient.ts
-import LangTranslateClient from "langapi-client";
-
-const LangClient = new LangTranslateClient(
-  process.env.LANG_KEY,
-  require("./.lang/translations.json"),
-  require("./.lang/langconfig.json")
-);
-
-export function tr(phrase: string) {
-  return LangClient.tr(phrase);
-}
-```
-
-# Preparing Texts For Translation
-
-Wrap all of the strings you want translated with Lang API's tr function.
-
-```javascript
-// *.js, *.jsx
-import { tr } from "./LangClient";
-
-var translatedString = tr("Hello world!");
-
-// translatedString (es): ¡Hola Mundo!
-```
-
-```typescript
-// *.ts, *.tsx
-import { tr } from "./LangClient";
-
-const translatedString = tr("Hello world!");
-
-// translatedString (es): ¡Hola Mundo!
-```
-
 # Interpolation
 
 Interpolation allows you to add dynamic values to your translations, and will be escaped during the translation. You must put param() calls inside of tr() calls.
@@ -214,52 +158,6 @@ const ESCAPED_SITE = "Lang API";
 const translatedString = tr("Welcome to " + param(ESCAPED_SITE) + "!");
 
 // translatedString (es): ¡Bienvenido a Lang API!
-```
-
-# Request Translations
-
-Search through your codebase for all requested strings and send them to our API endpoint for translation. The push function parses your codebase for tr(...) calls and requests all previously unrequested strings for you. Phrases are uniquely identified by string value, so two tr() calls on the same string will only generate one request.
-
-```shell--all
-#!/usr/bin/bash
-
-> langapi push
-```
-
-> Make sure your .env file contains your Lang API key, which is used for authentication
-
-# Receive Translations
-
-The pull function gets all requested phrases that have been translated thus far caches the results inside of your translations.json, which is where tr(...) will fetch your translations.
-
-```shell--all
-#!/usr/bin/bash
-
-> langapi pull
-```
-
-> Make sure your .env file contains your Lang API key, which is used for authentication
-
-# Ready to go!
-
-Once you've requested translations and cached the results in translations.json, you're all set to display localized strings with the tr(...) function. Strings that are not yet translated will default to the original language string.
-
-```javascript
-// *.js, *.jsx
-var tr = require("./LangClient");
-
-var translatedString = tr("Hello world!");
-
-// translatedString (missing translation): Hello world!
-```
-
-```typescript
-// *.ts, *.tsx
-import tr from "./LangClient";
-
-const translatedString = tr("Hello world!");
-
-// translatedString (missing translation): Hello world!
 ```
 
 #Language Codes
