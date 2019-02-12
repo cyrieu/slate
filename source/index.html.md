@@ -17,7 +17,7 @@ LangAPI exists to help developers rapidly translate and localize their apps for 
 
 # Getting Started
 
-Follow the steps below to translate your first string in under 5 minutes!
+Follow the steps below to translate your first string in under 3 minutes!
 
 ## Sign Up
 
