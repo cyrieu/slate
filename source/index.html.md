@@ -19,7 +19,7 @@ Welcome to Lang API! You can use our API and node module to make translation req
 
 First, we need to add the langapi node module to our project and ensure we have loaded the correct API key.
 
-> In the terminal, install the "langapi" node module.
+> In the terminal, install the "langapi" node module globally.
 
 ```shell--all
 #!/usr/bin/bash
@@ -46,7 +46,7 @@ An additional file called LangConfig.js will be created, containing the client u
 ```shell--all
 #!/user/bin/bash
 
-> langapi init --flags
+> langapi init
 ```
 
 > A --src flag can be provided to specify the source directory. If no argument is provided, it defaults to "./src".
@@ -63,7 +63,7 @@ An additional file called LangConfig.js will be created, containing the client u
 
 ```javascript
 //LangClient.js
-var LangClient = require("langapi")(
+var LangClient = require("langapi-client")(
   process.env.LANG_KEY,
   require("./.lang/translations.json"),
   require("./.lang/langconfig.json")
@@ -78,7 +78,7 @@ export function tr(phrase) {
 
 ```typescript
 // LangClient.ts
-import LangTranslateClient from "langapi";
+import LangTranslateClient from "langapi-client";
 
 const LangClient = new LangTranslateClient(
   process.env.LANG_KEY,
@@ -93,22 +93,48 @@ export function tr(phrase: string) {
 
 # Preparing Texts For Translation
 
-Wrap all of your desired strings with Lang API's tr function.
-
-Adding support for variables inside the string is coming out in the next release - only plaintext strings are currently supported.
+Wrap all of the strings you want translated with Lang API's tr function.
 
 ```javascript
 // *.js, *.jsx
 import { tr } from "./LangClient";
 
-var translatedString = tr("Original string");
+var translatedString = tr("Hello world!");
+
+// translatedString (es): ¡Hola Mundo!
 ```
 
 ```typescript
 // *.ts, *.tsx
 import { tr } from "./LangClient";
 
-const translatedString = tr("Original string");
+const translatedString = tr("Hello world!");
+
+// translatedString (es): ¡Hola Mundo!
+```
+
+# Interpolation
+
+Interpolation allows you to add dynamic values to your translations, and will be escaped during the translation. You must put param() calls inside of tr() calls.
+
+```javascript
+// *.js, *.jsx
+import { tr, param } from "./LangClient";
+
+var ESCAPED_SITE = "Lang API";
+var translatedString = tr("Welcome to " + param(ESCAPED_SITE) + "!");
+
+// translatedString (es): ¡Bienvenido a Lang API!
+```
+
+```typescript
+// *.ts, *.tsx
+import { tr, param } from "./LangClient";
+
+const ESCAPED_SITE = "Lang API";
+const translatedString = tr("Welcome to " + param(ESCAPED_SITE) + "!");
+
+// translatedString (es): ¡Bienvenido a Lang API!
 ```
 
 # Request Translations
@@ -144,6 +170,8 @@ Once you've requested translations and cached the results in translations.json, 
 var tr = require("./LangClient");
 
 var translatedString = tr("Hello world!");
+
+// translatedString (missing translation): Hello world!
 ```
 
 ```typescript
@@ -151,6 +179,8 @@ var translatedString = tr("Hello world!");
 import tr from "./LangClient";
 
 const translatedString = tr("Hello world!");
+
+// translatedString (missing translation): Hello world!
 ```
 
 #Language Codes
