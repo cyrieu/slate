@@ -21,7 +21,7 @@ Follow the steps below to translate your first string in under 3 minutes!
 
 ## Sign Up
 
-Before you start translating, you'll need to [sign up for an account](https://www.langapi.co/dashboard).
+Before you start translating, you'll need to [sign up for an account](https://www.langapi.co/signup).
 
 ## Install the CLI and login
 
