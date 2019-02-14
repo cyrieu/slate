@@ -74,7 +74,7 @@ We recommend using machine translations for testing out the workflow.
 ```json--all
 {
   "originalLanguage": "en",
-  "targetLanguage": ["zh"]
+  "targetLanguages": ["zh"]
 }
 ```
 
